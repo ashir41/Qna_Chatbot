@@ -7,14 +7,23 @@
 
 #from dotenv import load_dotenv
 #load_dotenv()
-
+import os
 from langchain_groq import ChatGroq
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
-groq_api_key = st.secrets["GROQ_API_KEY"]
-serper_api_key = st.secrets["SERPER_API_KEY"]
+if "GROQ_API_KEY" not in st.secrets:
+    st.error("GROQ_API_KEY not found in Streamlit Secrets.")
+    st.stop()
+
+if "SERPER_API_KEY" not in st.secrets:
+    st.error("SERPER_API_KEY not found in Streamlit Secrets.")
+    st.stop()
+
+# Set as environment variables (BEST PRACTICE)
+os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+os.environ["SERPER_API_KEY"] = st.secrets["SERPER_API_KEY"]
 llm=ChatGroq(model="openai/gpt-oss-20b", streaming=True)
 search=GoogleSerperAPIWrapper()
 tools= [search.run]
