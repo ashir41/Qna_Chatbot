@@ -5,15 +5,16 @@
 ##streaming
 ##web interface
 
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
 
 from langchain_groq import ChatGroq
 from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
-
+groq_api_key = st.secrets["GROQ_API_KEY"]
+serper_api_key = st.secrets["SERPER_API_KEY"]
 llm=ChatGroq(model="openai/gpt-oss-20b", streaming=True)
 search=GoogleSerperAPIWrapper()
 tools= [search.run]
