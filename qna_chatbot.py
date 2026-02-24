@@ -13,6 +13,7 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
+st.write("Secrets available:", st.secrets)
 if "GROQ_API_KEY" not in st.secrets:
     st.error("GROQ_API_KEY not found in Streamlit Secrets.")
     st.stop()
