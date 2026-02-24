@@ -13,7 +13,24 @@ from langchain_community.utilities import GoogleSerperAPIWrapper
 from langchain.agents import create_agent
 from langgraph.checkpoint.memory import InMemorySaver
 import streamlit as st
-st.write("Secrets available:", st.secrets)
+# Debug: print secrets keys
+st.write("Available secret keys:", list(st.secrets.keys()))
+
+# Safely read Groq key
+groq_api_key = st.secrets.get("GROQ_API_KEY")
+if not groq_api_key:
+    st.error("GROQ_API_KEY not found in Streamlit Secrets")
+    st.stop()
+
+# Safely read Serper key
+serper_api_key = st.secrets.get("SERPER_API_KEY")
+if not serper_api_key:
+    st.error("SERPER_API_KEY not found in Streamlit Secrets")
+    st.stop()
+
+# Set as environment variables for LangChain
+os.environ["GROQ_API_KEY"] = groq_api_key
+os.environ["SERPER_API_KEY"] = serper_api_keyst.write("Secrets available:", st.secrets)
 if "GROQ_API_KEY" not in st.secrets:
     st.error("GROQ_API_KEY not found in Streamlit Secrets.")
     st.stop()
