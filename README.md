@@ -59,25 +59,48 @@ interface
 
 ------------------------------------------------------------------------
 
-## ⚙️ Installation (Run Locally)
+## Installation (Run Locally)
 
 ### 1. Clone the Repository
 
-git clone https://github.com/ashir41/Qna_Chatbot.git\
+``` bash
+git clone https://github.com/ashir41/Qna_Chatbot.git
 cd Qna_Chatbot
+```
 
 ### 2. Create Virtual Environment
 
-python -m venv venv\
-source venv/bin/activate \# Mac/Linux\
-venv`\Scripts`{=tex}`\activate         `{=tex}\# Windows
+``` bash
+python -m venv venv
+```
 
-### 3. Install Dependencies
+### 3. Activate Virtual Environment
 
+Mac / Linux:
+
+``` bash
+source venv/bin/activate
+```
+
+Windows (Command Prompt):
+
+``` bash
+venv\Scripts\activate
+```
+
+Windows (PowerShell):
+
+``` bash
+venv\Scripts\Activate.ps1
+```
+
+### 4. Install Dependencies
+
+``` bash
 pip install -r requirements.txt
+```
 
 ------------------------------------------------------------------------
-
 ## 🔐 Environment Variables
 
 Create a `.env` file in the root directory:
